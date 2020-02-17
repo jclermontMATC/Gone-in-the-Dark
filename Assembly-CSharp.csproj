@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Environment\StepStone.cs" />
      <Compile Include="Assets\Scripts\LightMovementTest.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/harveysr/Documents/Gone-in-the-Dark/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
