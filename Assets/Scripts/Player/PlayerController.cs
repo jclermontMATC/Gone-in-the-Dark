@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Created by Mike Lecus
+
+
     CharacterController characterController;    // giving the player a character controller
 
     [SerializeField] private float speed = 5; //player move speed
