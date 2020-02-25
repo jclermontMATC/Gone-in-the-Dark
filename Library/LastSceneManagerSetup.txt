@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/PickupTest.unity
+=======
+- path: Assets/Scenes/PlayerStateTest.unity
+>>>>>>> Dan
   isLoaded: 1
   isActive: 1
   isSubScene: 0
