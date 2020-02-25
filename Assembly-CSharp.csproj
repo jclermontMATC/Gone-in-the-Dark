@@ -53,8 +53,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AlertCultist.cs" />
      <Compile Include="Assets\Scripts\CultistController.cs" />
      <Compile Include="Assets\Scripts\CultistInspector.cs" />
+     <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\LightMovementTest.cs" />
      <Compile Include="Assets\Scripts\PlayerStates.cs" />
  <Reference Include="Unity.Timeline.Editor">

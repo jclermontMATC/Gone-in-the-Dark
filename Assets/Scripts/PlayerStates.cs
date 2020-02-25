@@ -8,6 +8,8 @@ public class PlayerStates : MonoBehaviour
     public bool isLit;
     public GameObject light;
 
+    
+
     void Start()
     {
         isHidden = false;

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5280682406563568171}
   - component: {fileID: 5083133421711624803}
   - component: {fileID: 6074041095910485393}
-  - component: {fileID: 6994676101928697865}
   m_Layer: 9
   m_Name: Plane
   m_TagString: Untagged
@@ -79,20 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &6994676101928697865
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4412320591200880302}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5944774454345038354
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +195,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &5955715759738867411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,25 +209,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  destination: {x: 0, y: 0, z: 0}
+  patrolSpeed: 1
   Waypoint: {fileID: 4331141079118923365, guid: 42ea609fe4031a643a2b5126f5e17ce1,
     type: 3}
-  waypoints: []
+  waypoints:
+  - {fileID: 609757926}
   convertedWaypoints: []
-  destination: {x: 0, y: 0, z: 0}
-  sight: 6
-  patrolSpeed: 2
-  chaseSpeed: 3
-  sphereOfSight: {fileID: 0}
-  attackDistance: 0
-  attackSpeed: 0
-  attackDamage: 30
-  stunned: 0
   playerSighted: 0
-  alerted: 0
+  sightDistance: 6
+  chaseSpeed: 1
+  sphereOfSight: {fileID: 0}
   rayMask:
     serializedVersion: 2
-    m_Bits: 0
-  stunnedTime: 2
+    m_Bits: 257
+  attackDistance: 1
+  attackSpeed: 2
+  attackDamage: 30
+  stunned: 0
+  stunnedDuration: 2
+  alertedSpeed: 2
+  alerted: 0
+  alertPosistion: {x: 0, y: 0, z: 0}
 --- !u!1001 &4331141078509186176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -257,15 +245,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4331141079118923365, guid: 42ea609fe4031a643a2b5126f5e17ce1,
         type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331141079118923365, guid: 42ea609fe4031a643a2b5126f5e17ce1,
+        type: 3}
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000,
         type: 0}
-    - target: {fileID: 4331141079118923365, guid: 42ea609fe4031a643a2b5126f5e17ce1,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 4331141079118923366, guid: 42ea609fe4031a643a2b5126f5e17ce1,
         type: 3}
       propertyPath: m_LocalPosition.x
