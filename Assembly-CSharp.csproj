@@ -686,7 +686,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\Lantern.cs" />
+=======
+     <Compile Include="Assets\Scripts\Environment\StepStone.cs" />
+>>>>>>> Sean
      <Compile Include="Assets\Scripts\LightMovementTest.cs" />
      <Compile Include="Assets\Scripts\PlayerHealthTest.cs" />
      <Compile Include="Assets\Scripts\PlayerStates.cs" />
