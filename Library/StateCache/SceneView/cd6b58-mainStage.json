@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":0.29672005772590639,"y":0.5572435259819031,"z":-0.025812039151787759},"rotation":{"x":-0.21023008227348329,"y":0.4350830912590027,"z":-0.10522349178791046,"w":-0.8691797256469727},"size":5.833632946014404,"orthographic":false}
 =======
@@ -15,3 +16,6 @@
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":-0.6276593208312988,"y":-0.6149206161499023,"z":0.7399769425392151},"rotation":{"x":0.4377181828022003,"y":-0.42541834712028506,"z":0.24742965400218965,"w":0.7525483965873718},"size":5.533632755279541,"orthographic":false}
 >>>>>>> Sean
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":451.5448303222656,"y":250.3531036376953,"z":-7.5500078201293949},"rotation":{"x":0.022498006001114847,"y":0.0029992174822837116,"z":-0.00006749728345312178,"w":0.9997429847717285},"size":721.4271240234375,"orthographic":true}
+>>>>>>> Dan

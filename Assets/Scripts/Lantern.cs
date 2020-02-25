@@ -7,12 +7,13 @@ public class Lantern : MonoBehaviour
     // Created by Mike Lecus 
  
  
-    public static bool lantern = false;   // lantern on or off 
+    public static bool lantern = false;   // lantern on or off
     [SerializeField] public static float currentOil;      // oil the player has currently 
     [SerializeField] private float maxOil = 100f;   // max oil of lantern 
     [SerializeField] private float minOil = 0f;     // minimum amount of oil 
-    [SerializeField] private float oilSpeed = 1f;   // speed of oil depleting 
-    [SerializeField] private float setOil = 1f;     // the set amount of oil being used when lantern is on 
+
+    [SerializeField] private float setOil = 1f;     // the set amount of oil being used when lantern is on
+     
  
     // Start is called before the first frame update 
     void Start() { 
@@ -20,18 +21,19 @@ public class Lantern : MonoBehaviour
     } 
  
     // Update is called once per frame 
-    void Update() { 
+    void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {  // "Q" on keyboard turns lantern on or off 
             Debug.Log("Pressed"); 
-            lantern = !lantern; 
+            lantern = !lantern;
+            lantern = true;
         } 
  
         if (lantern == true && currentOil > 0) {    // if player has oil and uses the lantern, the oil fuel starts to be used 
-            currentOil -= setOil * oilSpeed * Time.deltaTime; 
+            currentOil =  Mathf.Max(currentOil - (setOil * Time.deltaTime), 0);
         } 
  
         if (currentOil <= 0) {  // when the player runs out of oil the lantern turns off 
             lantern = false; 
-        } 
+        }
     } 
 } 
