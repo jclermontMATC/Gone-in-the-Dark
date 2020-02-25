@@ -9,46 +9,31 @@ namespace GameManagement{
     //This script was created by Dan Urbanczyk
 
     //============================
-    //these don"t do anything yet, they are here mostly to help with formatting as of now
-    //private bool livingStatus;  Unsure if this will need to be in this script
+    public bool alive; // this might be used later in enemy UI but not currently
     public static bool isHidden = true;
     public Text hidingText;
     //=============================
     public static bool isLit;
     public Text litText;
-
-    public Slider sliderHealth; // Gives script access to the Health slider
-    public Text healthCount; // This represents the number inside the Health bar
-    public Slider sliderOil; // Gives script access to the Oil slider
-    public Text oilCount; // This represents the number inside the Oil bar
-    public  Slider sliderStamina; // Gives script access to the Stamina slider
-    public Text staminaCount; // This represents the number inside the Stamina Bar
-    /* placeholder*/ private float stamina;
-
-
-    void Start(){
-        Lantern.currentOil = 100;
-    }
+    // ===========================
+    [SerializeField]public Slider sliderHealth; // Gives script access to the Health slider
+    [SerializeField]public Text healthCount; // This represents the number inside the Health bar
+    [SerializeField]public Slider sliderOil; // Gives script access to the Oil slider
+    [SerializeField]public Text oilCount; // This represents the number inside the Oil bar
+    [SerializeField]public  Slider sliderStamina; // Gives script access to the Stamina slider
+    [SerializeField]public Text staminaCount; // This represents the number inside the Stamina Bar
 
     // Update is called once per frame
     void Update()
     {
 
         //these are used to set a visible number for the UI bars
-        sliderHealth.value  = PlayerHealthTest.currentHealth;// HealthScript.currentHealth;
-        sliderOil.value = Lantern.currentOil;
-        sliderStamina.value = stamina;// SprintScript.currentStamina;
-        healthCount.text = "" + PlayerHealthTest.currentHealth;// HealthScript.currentHealth;
+        sliderHealth.value  = Health.currentHealth;// HealthScript.currentHealth;
+        sliderOil.value = Lantern.currentOil; 
+        sliderStamina.value = Sprint.currentStamina;// SprintScript.currentStamina;
+        healthCount.text = "" + Health.currentHealth.ToString("0");// HealthScript.currentHealth;
         oilCount.text = "" + Lantern.currentOil.ToString("0");
-        staminaCount.text = "" + stamina.ToString("0");
-
-        //===================================================
-        if(Input.GetKey(KeyCode.LeftShift)){
-            sliderStamina.value = sliderStamina.value - 1;
-        }
-        else if(stamina <= 100){
-            sliderStamina.value++;
-        }
+        staminaCount.text = "" + Sprint.currentStamina.ToString("0");
         //===================================================
         if (Lantern.lantern == true){
             isLit = true;
@@ -58,7 +43,6 @@ namespace GameManagement{
             litText.text = "Lantern: OFF";
             isLit = false;
         }
-        //
         if(isHidden == true){
             hidingText.text = "HIDDEN";
         }

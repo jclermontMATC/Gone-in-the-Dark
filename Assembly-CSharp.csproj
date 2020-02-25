@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <CscToolPath>C:\Program Files\Unity\Editor\Data\Tools\RoslynScripts</CscToolPath>
-    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -55,10 +53,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\Lantern.cs" />
      <Compile Include="Assets\Scripts\LightMovementTest.cs" />
-     <Compile Include="Assets\Scripts\PlayerHealthTest.cs" />
      <Compile Include="Assets\Scripts\PlayerStates.cs" />
+     <Compile Include="Assets\Scripts\Sprint.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Dan&apos;s Branch/Gone-in-the-Dark/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
