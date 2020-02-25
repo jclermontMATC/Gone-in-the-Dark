@@ -25,7 +25,6 @@ public class Lantern : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) {  // "Q" on keyboard turns lantern on or off 
             Debug.Log("Pressed"); 
             lantern = !lantern;
-            lantern = true;
         } 
  
         if (lantern == true && currentOil > 0) {    // if player has oil and uses the lantern, the oil fuel starts to be used 

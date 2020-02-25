@@ -101,6 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 929334269024062347}
+  - component: {fileID: 1980585036}
   m_Layer: 0
   m_Name: PlayerStatusBars
   m_TagString: Untagged
@@ -132,6 +133,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &1980585036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929334269024062340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9454fe88450e2a4418f1457d4a260124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alive: 0
+  hidingText: {fileID: 929334270651308326}
+  litText: {fileID: 929334269863881740}
+  sliderHealth: {fileID: 929334270153247913}
+  healthCount: {fileID: 929334270053056268}
+  sliderOil: {fileID: 929334268971021418}
+  oilCount: {fileID: 929334270454751320}
+  sliderStamina: {fileID: 929334269388970538}
+  staminaCount: {fileID: 929334270783685756}
 --- !u!1 &929334269109810867
 GameObject:
   m_ObjectHideFlags: 0

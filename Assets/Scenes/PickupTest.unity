@@ -141,6 +141,9 @@ GameObject:
   - component: {fileID: 751081665}
   - component: {fileID: 751081670}
   - component: {fileID: 751081671}
+  - component: {fileID: 751081674}
+  - component: {fileID: 751081673}
+  - component: {fileID: 751081672}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -269,6 +272,51 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &751081672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751081664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae35d52dc403d8049a66e65a1191c69a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStamina: 100
+  regenStamina: 1
+  speed: 5
+--- !u!114 &751081673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751081664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440dfbffee4396d488d95c23f0dad4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage: 0
+  isDead: 0
+--- !u!114 &751081674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751081664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e9c9b9b0be4104ab9cea7921b27c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxOil: 100
+  minOil: 0
+  setOil: 1
 --- !u!1001 &1014572859
 PrefabInstance:
   m_ObjectHideFlags: 0
