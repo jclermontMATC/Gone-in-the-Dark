@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public class Inventory : MonoBehaviour
     public float noStaminaWeight = 50f;
 
     private List<InventoryItem> items = new List<InventoryItem>();
+
+    public RectTransform canvas;
+    public GameObject hotbarPrefab;
+    
+
+    private void Start()
+    {
+        
+    }
 
     public void AddPotion(int type) {
         items.Add(new RestoringItem(25, type));
