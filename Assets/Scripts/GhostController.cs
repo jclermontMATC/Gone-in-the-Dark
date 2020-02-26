@@ -1,17 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CultistController : MonoBehaviour {
+public class GhostController : MonoBehaviour {
     /// A.I. State
     enum State {
         idle,
-        patrol,
         stunned,
         attack,
-        chase,
-        alerted
+        chase
     }
     /// the current state of the cultist
     [SerializeField] State currentState;
@@ -24,47 +23,32 @@ public class CultistController : MonoBehaviour {
     // for the various destinations throughout the A.I states
     [SerializeField, HideInInspector] Vector3 destination;
 
-#region Patrol Variables
-    [SerializeField] float patrolSpeed = 2f;
-     public GameObject Waypoint;
-     public List<Transform> waypoints;
-    // these waypoints are the real waypoints from Local to World
-    [SerializeField, HideInInspector] List<Vector3> convertedWaypoints;
-    int currentWaypoint = 0;
-    // Distance from the destination to go to the next waypoint
-    float distThreshold = 0.1f;
-#endregion 
-
-#region Chase Variables
+    #region  Idel Variables
+    private Vector3 idlePos;
+    [SerializeField] float speed = 1;
+    #endregion
+    #region Chase Variables
     [HideInInspector] public bool playerSighted;
     [SerializeField] float sightDistance = 6f;
     [SerializeField] float chaseSpeed = 3;
-    [SerializeField, HideInInspector] SphereCollider sphereOfSight;
-    [SerializeField,HideInInspector] LayerMask rayMask;
-#endregion
+    SphereCollider sphereOfSight;
+    LayerMask rayMask;
+    #endregion
 
-#region Attack Variables
+    #region Attack Variables
     [SerializeField] float attackDistance;
     float attackerDistance;
-    [SerializeField] float attackSpeed;
+    [SerializeField] float attackRate;
     private float attackTimer;
     [SerializeField] int attackDamage = 30;
-#endregion
+    #endregion
 
-#region Stunned Variables
+    #region Stunned Variables
     [HideInInspector] public bool stunned;
     [SerializeField] private int stunnedDuration = 2;
     private float stunTimer;
 
-#endregion
-
-#region  Alterted Variables
-    [SerializeField] float alertedSpeed = 2;
-    [HideInInspector] public bool alerted;
-    [HideInInspector] public Vector3 alertPosistion;
-
-#endregion
-
+    #endregion
 
     void Start () {
         //Find Components
@@ -75,31 +59,29 @@ public class CultistController : MonoBehaviour {
         agent = GetComponent<NavMeshAgent> ();
         // Intiaitate state
         currentState = State.idle;
+        idlePos = transform.position;
         // Convert the Local positions of the waypoints to to world posistions
-        for (int i = 0; i < waypoints.Count; i++) {
-            convertedWaypoints.Add (waypoints[i].position);
-        }
     }
 
     // Update is called once per frame
     void Update () {
 
-    #region  Controls the different states 
+        #region  Controls the different states 
         if (!playerSighted) {
-            currentState = State.patrol;
+            currentState = State.idle;
         } else {
             currentState = State.chase;
         }
+
         if (stunned) {
             currentState = State.stunned;
         }
-        if (alerted) {
-            currentState = State.alerted;
-        }
+
         attackerDistance = Vector3.Distance (transform.position, player.transform.position);
         if (Vector3.Distance (transform.position, player.transform.position) <= attackDistance) {
             currentState = State.attack;
         }
+
         if (playerSighted) {
             attackTimer += Time.deltaTime;
         } else {
@@ -108,8 +90,8 @@ public class CultistController : MonoBehaviour {
 
         //Methods base on current state
         switch (currentState) {
-            case State.patrol:
-                Patrol ();
+            case State.idle:
+                idle ();
                 break;
             case State.chase:
                 Chase ();
@@ -120,12 +102,15 @@ public class CultistController : MonoBehaviour {
             case State.stunned:
                 Stun ();
                 break;
-            case State.alerted:
-                Alerted ();
-                break;
             default:
                 break;
         }
+    }
+
+    void idle () {
+        destination = idlePos;
+        agent.speed = speed;
+        agent.SetDestination (destination);
     }
     #endregion
     //// used to determin if the player is in sight range then if they are hidden or the latern is lit
@@ -137,7 +122,7 @@ public class CultistController : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast (transform.position, dir, out hit, rayMask)) {
                 if (hit.collider.CompareTag ("Player")) {
-                    if (!playerStates.isHidden && playerStates.isLit) {
+                    if (!playerStates.isHidden && !playerStates.isLit) {
                         playerSighted = true;
                     } else {
                         playerSighted = false;
@@ -153,30 +138,17 @@ public class CultistController : MonoBehaviour {
             playerSighted = false;
         }
     }
-    /// Patrols along a path of waypoints
-    void Patrol () {
-
-        agent.speed = patrolSpeed;
-        destination = convertedWaypoints[currentWaypoint];
-        agent.SetDestination (destination);
-        if (Vector3.Distance (transform.position, destination) <= distThreshold) {
-            currentWaypoint++;
-            if (currentWaypoint >= convertedWaypoints.Count) {
-                currentWaypoint = 0;
-            }
-        }
-    }
     /////chases down the player
     void Chase () {
         agent.speed = chaseSpeed;
         destination = player.transform.position;
-
         agent.SetDestination (destination);
     }
     //// Attack the player when its in range
     void Attack () {
-        if (attackTimer > attackSpeed) {
+        if (attackTimer > attackRate) {
             if (!stunned && playerSighted) {
+                Debug.Log ("ATTACK");
                 player.GetComponent<Health> ().TakeDamage (attackDamage);
                 attackTimer = 0;
             }
@@ -200,25 +172,5 @@ public class CultistController : MonoBehaviour {
         }
 
     }
-    //// controls when the cultist is alerted by say a pile of leaves. works in conjunction with the Debri Prefab
-    void Alerted () {
-        destination = alertPosistion;
-        agent.speed = alertedSpeed;
-        agent.SetDestination (destination);
-        if (Vector3.Distance(transform.position, alertPosistion)< 1f) {
-            StartCoroutine(waitAfterAlerted());
-        }
-    }
-    IEnumerator waitAfterAlerted(){
-        yield return new WaitForSeconds(Random.Range(1,3));
-        alerted = false;
-    }
-    ////// Inspector stuff////////////////
-    //Adds waypoint for the Patrol state
-    ////////////////////////////////////
-    public void Addwaypoint () {
-        GameObject go = Instantiate (Waypoint, this.transform.position, Quaternion.identity);
-        go.transform.parent = transform;
-        waypoints.Add (go.transform);
-    }
+    
 }

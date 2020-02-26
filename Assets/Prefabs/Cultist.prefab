@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1b7bc647c9ab2584ba698358b257934e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
     m_Bits: 257
   attackDistance: 1
   attackSpeed: 2
-  attackDamage: 30
+  attackDamage: 20
   stunned: 0
   stunnedDuration: 2
   alertedSpeed: 2
