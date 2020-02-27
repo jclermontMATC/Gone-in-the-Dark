@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+//////////////////////////////////
+/// Script by Brian Dornbusch ///
+////////// 2/27/2020 ////////////
+////////////////////////////////
 [CustomEditor (typeof (CultistController))]
 
 public class CultistInspector : Editor {

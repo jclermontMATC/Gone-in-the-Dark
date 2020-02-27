@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//////////////////////////////////
+/// Script by Brian Dornbusch ///
+////////// 2/27/2020 ////////////
+////////////////////////////////
 public class AlertCultist : MonoBehaviour {
     [SerializeField] bool altertable = true;
     [SerializeField] float alertRadius = 10f;

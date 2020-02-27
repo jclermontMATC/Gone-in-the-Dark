@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+//////////////////////////////////
+/// Script by Brian Dornbusch ///
+////////// 2/27/2020 ////////////
+////////////////////////////////
 public class GhostController : MonoBehaviour {
     /// A.I. State
     enum State {
