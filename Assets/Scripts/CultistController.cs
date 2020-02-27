@@ -26,8 +26,8 @@ public class CultistController : MonoBehaviour {
 
 #region Patrol Variables
     [SerializeField] float patrolSpeed = 2f;
-     public GameObject Waypoint;
-     public List<Transform> waypoints;
+    [HideInInspector] public GameObject Waypoint;
+    [HideInInspector] public List<Transform> waypoints;
     // these waypoints are the real waypoints from Local to World
     [SerializeField, HideInInspector] List<Vector3> convertedWaypoints;
     int currentWaypoint = 0;
@@ -40,15 +40,17 @@ public class CultistController : MonoBehaviour {
     [SerializeField] float sightDistance = 6f;
     [SerializeField] float chaseSpeed = 3;
     [SerializeField, HideInInspector] SphereCollider sphereOfSight;
-    [SerializeField,HideInInspector] LayerMask rayMask;
+    [SerializeField] LayerMask rayMask;
 #endregion
 
 #region Attack Variables
     [SerializeField] float attackDistance;
     float attackerDistance;
-    [SerializeField] float attackSpeed;
+    [SerializeField] float attackRate;
     private float attackTimer;
     [SerializeField] int attackDamage = 30;
+    Vector3 knockbackDir;
+    [SerializeField] float knockback = 8f;
 #endregion
 
 #region Stunned Variables
@@ -175,19 +177,16 @@ public class CultistController : MonoBehaviour {
     }
     //// Attack the player when its in range
     void Attack () {
-        if (attackTimer > attackSpeed) {
+        knockbackDir = player.transform.position - transform.position;
+        knockbackDir.y = 0.2f;
+        if (attackTimer > attackRate) {
             if (!stunned && playerSighted) {
+                Debug.Log ("ATTACK");
+                player.GetComponent<Rigidbody>().AddForce(knockbackDir.normalized * knockback,ForceMode.Impulse);
                 player.GetComponent<Health> ().TakeDamage (attackDamage);
                 attackTimer = 0;
             }
         }
-        if (Vector3.Distance (transform.position, player.transform.position) <= 1f) {
-            agent.SetDestination (transform.position);
-            agent.speed = 0;
-        } else {
-            agent.speed = chaseSpeed;
-        }
-
     }
     /// stops the cultist when they are stunned. A simple Boolean "Stunned" activates this
     void Stun () {

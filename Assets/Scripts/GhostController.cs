@@ -23,24 +23,28 @@ public class GhostController : MonoBehaviour {
     // for the various destinations throughout the A.I states
     [SerializeField, HideInInspector] Vector3 destination;
 
+
     #region  Idel Variables
     private Vector3 idlePos;
     [SerializeField] float speed = 1;
     #endregion
     #region Chase Variables
-    [HideInInspector] public bool playerSighted;
+    // [HideInInspector] 
+     public bool playerSighted;
     [SerializeField] float sightDistance = 6f;
     [SerializeField] float chaseSpeed = 3;
-    SphereCollider sphereOfSight;
-    LayerMask rayMask;
+    [SerializeField, HideInInspector] SphereCollider sphereOfSight;
+    [SerializeField] LayerMask rayMask;
     #endregion
 
     #region Attack Variables
     [SerializeField] float attackDistance;
-    float attackerDistance;
-    [SerializeField] float attackRate;
+    [HideInInspector] float attackerDistance;
+    [SerializeField] float attackRate = 2;
     private float attackTimer;
     [SerializeField] int attackDamage = 30;
+    public Vector3 knockbackDir;
+    public float knockback =100f;
     #endregion
 
     #region Stunned Variables
@@ -65,7 +69,6 @@ public class GhostController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
         #region  Controls the different states 
         if (!playerSighted) {
             currentState = State.idle;
@@ -122,7 +125,7 @@ public class GhostController : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast (transform.position, dir, out hit, rayMask)) {
                 if (hit.collider.CompareTag ("Player")) {
-                    if (!playerStates.isHidden && !playerStates.isLit) {
+                    if (!playerStates.isHidden) { // && !playerStates.isLit
                         playerSighted = true;
                     } else {
                         playerSighted = false;
@@ -146,9 +149,12 @@ public class GhostController : MonoBehaviour {
     }
     //// Attack the player when its in range
     void Attack () {
+        knockbackDir = player.transform.position - transform.position;
+        knockbackDir.y = 0.2f;
         if (attackTimer > attackRate) {
             if (!stunned && playerSighted) {
                 Debug.Log ("ATTACK");
+                player.GetComponent<Rigidbody>().AddForce(knockbackDir.normalized * knockback,ForceMode.Impulse);
                 player.GetComponent<Health> ().TakeDamage (attackDamage);
                 attackTimer = 0;
             }
@@ -170,7 +176,12 @@ public class GhostController : MonoBehaviour {
             stunned = false;
             stunTimer = 0;
         }
-
     }
-    
+
+    public void HitBylight(){
+        currentState = State.idle;
+        playerSighted = false;
+        agent.SetDestination(idlePos);
+    }
+
 }
