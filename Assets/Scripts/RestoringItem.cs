@@ -5,34 +5,35 @@ using System;
 
 public class RestoringItem : InventoryItem
 {
-    public enum Type {HEALTH, STAMINA, OIL};
-    public Type itemType;
+    public ItemType itemType;
     public int strength;
     public float duration;
 
     public RestoringItem(int _strength, int _type) {
-        Type nt = (Type)_type;
+        ItemType nt = (ItemType)_type;
         strength = _strength;
         itemType = nt;
         weight = 4f;
-        if (nt == Type.HEALTH) {
+        if (nt == ItemType.HEALTH) {
             weight = 2f;
         }
-        if (nt == Type.STAMINA) {
+        if (nt == ItemType.STAMINA) {
             duration = 30f;
         }
     }
 
+    public override ItemType GetItemType() { return itemType; }
+
     public override void Use()
     {
         switch (itemType) {
-            case Type.HEALTH:
+            case ItemType.HEALTH:
                 //Restore health by strength
                 break;
-            case Type.STAMINA:
+            case ItemType.STAMINA:
                 //Restore stamina by strength
                 break;
-            case Type.OIL:
+            case ItemType.OIL:
                 //Restore oil by strength
                 break;
         }
