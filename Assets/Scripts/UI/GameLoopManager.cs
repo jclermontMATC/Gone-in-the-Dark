@@ -20,8 +20,8 @@ public class GameLoopManager : MonoBehaviour
     [SerializeField]public Text oilCount; // This represents the number inside the Oil bar
     [SerializeField]public  Slider sliderStamina; // Gives script access to the Stamina slider
     [SerializeField]public Text staminaCount; // This represents the number inside the Stamina Bar
-    CultistController cultistController;
-    GhostController ghostController;
+    //CultistController cultistController;
+   // GhostController ghostController;
     // Update is called once per frame
     void Update()
     {
@@ -49,17 +49,17 @@ public class GameLoopManager : MonoBehaviour
         sliderStamina.value = sprintScript.currentStamina;
         staminaCount.text = "" + sprintScript.currentStamina.ToString("0");
         //================================================================
-        if(cultistController.playerSighted == true){
-            hidingText.text = "Detected";
-        }
-        else{
-            hidingText.text = "Hidden";
-        }
-        if(ghostController.playerSighted == true){
-            hidingText.text ="Detected";
-        }
-        else{
-            hidingText.text = "hidden";
-        }
+        //if(cultistController.playerSighted == true){
+        //    hidingText.text = "Detected";
+        //}
+        //else{
+        //    hidingText.text = "Hidden";
+        //}
+        //if(ghostController.playerSighted == true){
+        //    hidingText.text ="Detected";
+        //}
+        //else{
+        //    hidingText.text = "hidden";
+        //}
     }
 }

@@ -7,8 +7,8 @@ public class Lantern : MonoBehaviour
     // Created by Mike Lecus 
  
  
-    public static bool lantern = false;   // lantern on or off
-    [SerializeField] public static float currentOil;      // oil the player has currently 
+    public bool lantern = false;   // lantern on or off
+    [SerializeField] public float currentOil;      // oil the player has currently 
     [SerializeField] private float maxOil = 100f;   // max oil of lantern 
     [SerializeField] private float minOil = 0f;     // minimum amount of oil 
 

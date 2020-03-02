@@ -72,9 +72,9 @@
     <Compile Include="Assets\Scripts\PickUpPotion.cs" />
     <Compile Include="Assets\Scripts\RestoringItem.cs" />
     <Compile Include="Assets\Scripts\Sprint.cs" />
+    <Compile Include="Assets\Scripts\UI\GameLoopManager.cs" />
     <Compile Include="Assets\Scripts\UI\Hotbar.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerHealthTest.cs" />
-    <Compile Include="Assets\Scripts\UI\PlayerStates.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/clermoj1/Desktop/GitKraken/Gone-in-the-Dark/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

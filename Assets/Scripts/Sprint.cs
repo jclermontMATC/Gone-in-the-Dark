@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sprint : MonoBehaviour
 {
     [SerializeField] public float maxStamina = 100;
-    [SerializeField] public static float currentStamina;
+    [SerializeField] public float currentStamina;
     [SerializeField] private float regenStamina = 1f;
     [SerializeField] private int speed = 5;
 
