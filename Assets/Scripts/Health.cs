@@ -6,7 +6,6 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100;
     [SerializeField] public static float currentHealth;
-    [SerializeField] private float damage;
     [SerializeField] bool isDead = false;
 
     // Start is called before the first frame update
@@ -16,13 +15,13 @@ public class Health : MonoBehaviour
     }
 
     private void Update(){
-        TakeDamage();
+        
     }
 
-    
-    void TakeDamage(){
-        currentHealth -=  damage;
-            if(currentHealth <= 0 && !isDead){
+    public void ChangeHealth(int health) {
+        currentHealth = Mathf.Min(currentHealth + health, maxHealth);
+        if (currentHealth <= 0 && !isDead)
+        {
             Debug.Log("Health is " + currentHealth);
             Death();
         }
@@ -30,7 +29,7 @@ public class Health : MonoBehaviour
 
     void Death(){
         isDead = true;
-        Destroy(this.gameObject);
+        Destroy(gameObject);
         }
 
     /*void OnCollsionEnter(){

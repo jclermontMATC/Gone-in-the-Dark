@@ -300,7 +300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  damage: 0
   isDead: 0
 --- !u!114 &751081674
 MonoBehaviour:
@@ -1017,6 +1016,11 @@ PrefabInstance:
     - target: {fileID: 1691281785767598068, guid: ba954e85a84911f488a70269099fdcf0,
         type: 3}
       propertyPath: m_Name
+      value: Hotbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691281785767598068, guid: ba954e85a84911f488a70269099fdcf0,
+        type: 3}
+      propertyPath: m_TagString
       value: Hotbar
       objectReference: {fileID: 0}
     - target: {fileID: 6461072911204996069, guid: ba954e85a84911f488a70269099fdcf0,

@@ -15,11 +15,31 @@ public class Inventory : MonoBehaviour
 
     public RectTransform canvas;
     public GameObject hotbarPrefab;
-    
 
-    private void Start()
+
+    private void Update()
     {
-        
+        KeyCode[] codes = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0 };
+        for (int i = 0; i < items.Count; i++) {
+            if (Input.GetKeyDown(codes[i])) {
+                items[i].Use();
+            }
+        }
+        CheckEmptyItems();
+    }
+
+    public void CheckEmptyItems() {
+        GameObject hotbar = GameObject.FindGameObjectWithTag("Hotbar");
+        bool change = false;
+        for (int i = items.Count - 1; i >= 0; i--) {
+            if (items[i].quantity <= 0) {
+                items.RemoveAt(i);
+                change = true;
+            }
+        }
+        if (change) {
+            hotbar.GetComponent<Hotbar>().UpdateImages(items);
+        }
     }
 
     public void AddPotion(int type) {

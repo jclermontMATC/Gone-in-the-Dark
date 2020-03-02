@@ -23,7 +23,7 @@ public class Hotbar : MonoBehaviour
             hotbarBoxes[x] = Instantiate(hotbarPrefab, rt);
             RectTransform hbrt = hotbarBoxes[x].GetComponent<RectTransform>();
             hbrt.anchoredPosition = new Vector2(5 + x * 85, 5);
-            hotbarImages[x] = hbrt.GetComponentInChildren<Image>();
+            hotbarImages[x] = hbrt.Find("Image").GetComponent<Image>();
         }
     }
 
@@ -36,14 +36,22 @@ public class Hotbar : MonoBehaviour
     }
 
     public void UpdateImages(List<InventoryItem> items) {
-        for (int i = 0; i < items.Count; i++) {
-            InventoryItem item = items[i];
-
-            switch (item.GetItemType()) {
-                case ItemType.OIL:
-                    hotbarBoxes[i].transform.Find("Image").GetComponent<Image>().sprite = GetItemIcon("OilBottle_0");
-                    hotbarBoxes[i].transform.Find("Image").GetComponent<Image>().enabled = true;
-                    break;
+        for (int i = 0; i < hotbarImages.Length; i++) {
+            if (items.Count > i) {
+                InventoryItem item = items[i];
+                if (item != null) {
+                    switch (item.GetItemType()) {
+                        case ItemType.OIL:
+                            hotbarImages[i].sprite = GetItemIcon("OilBottle_0");
+                            hotbarImages[i].enabled = true;
+                            break;
+                    }
+                }
+                else {
+                    hotbarImages[i].enabled = false;
+                }
+            } else {
+                hotbarImages[i].enabled = false;
             }
         }
     }

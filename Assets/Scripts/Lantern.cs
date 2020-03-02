@@ -18,8 +18,12 @@ public class Lantern : MonoBehaviour
     // Start is called before the first frame update 
     void Start() { 
         currentOil = maxOil;    // sets the lantern to full at start 
-    } 
- 
+    }
+
+    public void AddOil(int points) {
+        currentOil = Mathf.Min(currentOil + points, maxOil);
+    }
+
     // Update is called once per frame 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {  // "Q" on keyboard turns lantern on or off 

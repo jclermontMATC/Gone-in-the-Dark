@@ -14,6 +14,7 @@ public class RestoringItem : InventoryItem
         strength = _strength;
         itemType = nt;
         weight = 4f;
+        quantity = 1;
         if (nt == ItemType.HEALTH) {
             weight = 2f;
         }
@@ -26,16 +27,21 @@ public class RestoringItem : InventoryItem
 
     public override void Use()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         switch (itemType) {
             case ItemType.HEALTH:
                 //Restore health by strength
+                player.GetComponent<Health>().ChangeHealth(strength);
                 break;
             case ItemType.STAMINA:
                 //Restore stamina by strength
                 break;
             case ItemType.OIL:
                 //Restore oil by strength
+                player.GetComponent<Lantern>().AddOil(strength);
+
                 break;
         }
+        quantity -= 1;
     }
 }
