@@ -10,5 +10,6 @@ abstract public class InventoryItem
     public string name;
     public float weight;
 
+    abstract public ItemType GetItemType();
     abstract public void Use();
 }

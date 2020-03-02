@@ -27,10 +27,22 @@ public class Hotbar : MonoBehaviour
         }
     }
 
+    private Sprite GetItemIcon(string spriteName) {
+        foreach (Sprite sprite in itemIcons)
+            if (sprite.name == spriteName)
+                return sprite;
+        
+        return null;
+    }
+
     public void UpdateImages(List<InventoryItem> items) {
-        foreach (InventoryItem i in items) {
-            switch (i.name) {
-                case "Health Potion":
+        for (int i = 0; i < items.Count; i++) {
+            InventoryItem item = items[i];
+
+            switch (item.GetItemType()) {
+                case ItemType.OIL:
+                    hotbarBoxes[i].transform.Find("Image").GetComponent<Image>().sprite = GetItemIcon("OilBottle_0");
+                    hotbarBoxes[i].transform.Find("Image").GetComponent<Image>().enabled = true;
                     break;
             }
         }

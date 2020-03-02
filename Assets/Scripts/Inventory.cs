@@ -24,6 +24,7 @@ public class Inventory : MonoBehaviour
 
     public void AddPotion(int type) {
         items.Add(new RestoringItem(25, type));
+        canvas.Find("Hotbar").GetComponent<Hotbar>().UpdateImages(items);
     }
 
     public float GetInventoryWeight() {
