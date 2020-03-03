@@ -27,7 +27,7 @@ public class GhostController : MonoBehaviour {
     [SerializeField, HideInInspector] Vector3 destination;
 
 
-    #region  Idel Variables
+    #region  Idle Variables
     private Vector3 idlePos;
     [SerializeField] float speed = 1;
     #endregion
@@ -46,7 +46,7 @@ public class GhostController : MonoBehaviour {
     [SerializeField] float attackRate = 2;
     private float attackTimer;
     [SerializeField] int attackDamage = 30;
-    public Vector3 knockbackDir;
+    [HideInInspector] public Vector3 knockbackDir;
     public float knockback =100f;
     #endregion
 
