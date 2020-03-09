@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":0.29672005772590639,"y":0.5572435259819031,"z":-0.025812039151787759},"rotation":{"x":-0.21023008227348329,"y":0.4350830912590027,"z":-0.10522349178791046,"w":-0.8691797256469727},"size":5.833632946014404,"orthographic":false}
 =======
@@ -19,3 +20,6 @@
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":451.5448303222656,"y":250.3531036376953,"z":-7.5500078201293949},"rotation":{"x":0.022498006001114847,"y":0.0029992174822837116,"z":-0.00006749728345312178,"w":0.9997429847717285},"size":721.4271240234375,"orthographic":true}
 >>>>>>> Dan
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":-0.7942533493041992,"y":0.4631919860839844,"z":5.820450782775879},"rotation":{"x":0.13040976226329804,"y":0.5441882610321045,"z":-0.08607801795005799,"w":0.8242948651313782},"size":15.68207836151123,"orthographic":false}
+>>>>>>> Brian

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hotbar
+  - Ghost
+  - Cultist
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,10 @@ TagManager:
   - UI
   - 
   - 
+  - Player
+  - Enemyies
   - Ground
+  - 
   - 
   - 
   - 

@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 Base path: 'C:/Program Files/Unity/Editor/Data', plugins path 'C:/Program Files/Unity/Editor/Data/PlaybackEngines'
+=======
+Base path: 'D:/2019.2.0f1/Editor/Data', plugins path 'D:/2019.2.0f1/Editor/Data/PlaybackEngines'
+>>>>>>> Brian
 Cmd: initializeCompiler

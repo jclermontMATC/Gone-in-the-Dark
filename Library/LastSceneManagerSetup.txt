@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/PickupTest.unity
+=======
+- path: Assets/Scenes/CameraTestScene.unity
+>>>>>>> Brian
   isLoaded: 1
   isActive: 1
   isSubScene: 0
