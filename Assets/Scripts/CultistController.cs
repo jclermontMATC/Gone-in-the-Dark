@@ -186,7 +186,7 @@ public class CultistController : MonoBehaviour {
             if (!stunned && playerSighted) {
                 Debug.Log ("ATTACK");
                 player.GetComponent<Rigidbody>().AddForce(knockbackDir.normalized * knockback,ForceMode.Impulse);
-                player.GetComponent<Health> ().TakeDamage (attackDamage);
+                player.GetComponent<Health> ().ChangeHealth (-attackDamage);
                 attackTimer = 0;
             }
         }

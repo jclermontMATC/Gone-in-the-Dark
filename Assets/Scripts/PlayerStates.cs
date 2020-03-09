@@ -16,11 +16,11 @@ public class PlayerStates : MonoBehaviour {
     public LayerMask lightInteractive;
     public LayerMask mouseRaylayer;
 
-
+    public Lantern lantern;
 
     void Start () {
-        isHidden = false;
-        isLit = true;
+        lantern = GetComponent<Lantern>();
+        SetLanternState(isLit);
     }
 
     // Update is called once per frame
@@ -47,9 +47,7 @@ public class PlayerStates : MonoBehaviour {
         }
 
         if (Input.GetKeyDown (KeyCode.E)) {
-
-            light.SetActive (!light.activeSelf);
-            isLit = !isLit;
+            SetLanternState(!isLit);
         }
 
         //// makes the Ghost go back to their start posistion while the light shines on them. 
@@ -67,4 +65,9 @@ public class PlayerStates : MonoBehaviour {
         }
     }
 
+    public void SetLanternState(bool state) {
+        isLit = state;
+        light.SetActive(state);
+        lantern.SetState(state);
+    }
 }

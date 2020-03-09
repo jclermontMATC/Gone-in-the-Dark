@@ -16,13 +16,11 @@ public class Sprint : MonoBehaviour
     void Update(){
         if (Input.GetKey(KeyCode.LeftShift)){
            speed = speed + 2;
-            currentStamina--;
-        }
-
-        else if (currentStamina < maxStamina){
-        
+           currentStamina--;
+        } else if (currentStamina < maxStamina){
             Regenerate();
         }
+        currentStamina = Mathf.Max(currentStamina, 0f);
     }
     void Regenerate(){
         currentStamina = Mathf.Min(currentStamina + regenStamina/50, maxStamina);
