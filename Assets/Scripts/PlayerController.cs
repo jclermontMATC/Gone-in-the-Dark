@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController characterController;    // giving the player a character controller
+    //private CharacterController characterController;    // giving the player a character controller
 
     public float speed = 5; //player move speed
 
@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
 
     private Animator _animator;
 
-    void Start() { characterController = GetComponent<CharacterController>();   // adding the CharacterController component
-        _animator = GetComponent<Animator>();
+    void Start() {
+        _animator = GetComponentInChildren<Animator>();
     }
 
     void Update() {
@@ -23,9 +23,10 @@ public class PlayerController : MonoBehaviour
         moveDirection *= speed; // adding player move speed to moving
         moveDirection = Vector3.ClampMagnitude(moveDirection, speed);  //for diagnanol speeds
 
-        characterController.Move(moveDirection * Time.deltaTime);   // adding Time.deltaTime
-
-        if (_animator == null) return;
+        if (_animator == null) {
+            Debug.Log("Hey");
+            return;
+        }
 
         if (moveDirection.magnitude > 0)
             facing = moveDirection;

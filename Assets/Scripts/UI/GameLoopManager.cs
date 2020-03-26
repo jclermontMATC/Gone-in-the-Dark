@@ -21,44 +21,60 @@ public class GameLoopManager : MonoBehaviour
     [SerializeField]public  Slider sliderStamina; // Gives script access to the Stamina slider
     [SerializeField]public Text staminaCount; // This represents the number inside the Stamina Bar
     //CultistController cultistController;
-   // GhostController ghostController;
-    // Update is called once per frame
+    //GhostController ghostController;
     void Update()
     {
-        //=====================OIL========================     
-        GameObject playerOil = GameObject.Find("Player");
-        Lantern lanternScript = playerOil.GetComponent<Lantern>();
-        sliderOil.value = lanternScript.currentOil;
-        oilCount.text = "" + lanternScript.currentOil.ToString("0");
-        if(lanternScript.lantern == true){
-            isLit = true;
-            litText.text = "Lantern: ON";
+        if(GameObject.Find("Player") == null)
+        {
+            sliderHealth.value = 0;
+            healthCount.text = "0";
+            sliderStamina.value = 0;
+            staminaCount.text = "0";
+            sliderOil.value = 0;
+            oilCount.text = "0";
         }
-        else{
-            litText.text = "Lantern: OFF";
-            isLit = false;
+        
+        if(GameObject.Find("Player") != null)
+        {
+            //=================Health===================================
+            GameObject playerHealth = GameObject.Find("Player");
+            Health healthScript = playerHealth.GetComponent<Health>();
+            sliderHealth.value = healthScript.currentHealth;
+            healthCount.text = "" + healthScript.currentHealth.ToString("0");
+            //=====================OIL========================     
+            GameObject playerOil = GameObject.Find("Player");
+            Lantern lanternScript = playerOil.GetComponent<Lantern>();
+            sliderOil.value = lanternScript.currentOil;
+            oilCount.text = "" + lanternScript.currentOil.ToString("0");
+            if(lanternScript.lantern == true){
+                isLit = true;
+                litText.text = "Lantern: ON";
+            }
+            else{
+                litText.text = "Lantern: OFF";
+                isLit = false;
+            }
+            //======================Sprint=============================
+            GameObject playerStamina = GameObject.Find("Player");
+            Sprint sprintScript = playerStamina.GetComponent<Sprint>();
+            sliderStamina.value = sprintScript.currentStamina;
+            staminaCount.text = "" + sprintScript.currentStamina.ToString("0");
         }
-        //=================Health===================================
-        GameObject playerHealth = GameObject.Find("Player");
-        Health healthScript = playerHealth.GetComponent<Health>();
-        sliderHealth.value = healthScript.currentHealth;
-        healthCount.text = "" + healthScript.currentHealth.ToString("0");
-        //======================Sprint=============================
-        GameObject playerStamina = GameObject.Find("Player");
-        Sprint sprintScript = playerStamina.GetComponent<Sprint>();
-        sliderStamina.value = sprintScript.currentStamina;
-        staminaCount.text = "" + sprintScript.currentStamina.ToString("0");
+
         //================================================================
         //if(cultistController.playerSighted == true){
         //    hidingText.text = "Detected";
         //}
-        //else{
+        //else
+        //{
         //    hidingText.text = "Hidden";
         //}
-        //if(ghostController.playerSighted == true){
-        //    hidingText.text ="Detected";
+        //if (ghostController.playerSighted == true)
+        //{
+        //    hidingText.text = "Detected";
         //}
-        //else{
+        //else
+        //{
         //    hidingText.text = "hidden";
         //}
     }
