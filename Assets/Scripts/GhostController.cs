@@ -25,6 +25,10 @@ public class GhostController : MonoBehaviour {
     NavMeshAgent agent;
     // for the various destinations throughout the A.I states
     [SerializeField, HideInInspector] Vector3 destination;
+    [SerializeField] Animator animator;
+    Vector3 prevPos;
+    Vector3 move = Vector3.zero;
+
 
 
     #region  Idle Variables
@@ -64,6 +68,8 @@ public class GhostController : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag ("Player");
         playerStates = player.GetComponent<PlayerStates> ();
         agent = GetComponent<NavMeshAgent> ();
+        animator = GetComponentInChildren<Animator>();
+
         // Intiaitate state
         currentState = State.idle;
         idlePos = transform.position;
@@ -72,6 +78,12 @@ public class GhostController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        move = transform.position - prevPos;
+        animator.SetFloat("FloatX", move.x);
+        animator.SetFloat("FloatZ", move.z);
+        prevPos = transform.position;
+
         #region  Controls the different states 
         if (!playerSighted) {
             currentState = State.idle;
@@ -157,8 +169,27 @@ public class GhostController : MonoBehaviour {
         if (attackTimer > attackRate) {
             if (!stunned && playerSighted) {
                 Debug.Log ("ATTACK");
-                player.GetComponent<Rigidbody>().AddForce(knockbackDir.normalized * knockback,ForceMode.Impulse);
+                Vector3 attackDir = transform.position - player.transform.position;
+                Debug.Log(attackDir);
+                if(attackDir.z < -0.5)
+                    animator.SetTrigger("AttackNorth");
+
+                if (attackDir.z > 0.5)
+                    animator.SetTrigger("AttackSouth");
+
+                if (attackDir.x < -0.5)
+                    animator.SetTrigger("AttackEast");
+
+                if (attackDir.x > 0.5)
+                    animator.SetTrigger("AttackWest");
+
+                int attackHit = UnityEngine.Random.Range(0, 1);
+                if (attackHit == 0) {
+
+                    player.GetComponent<Rigidbody>().AddForce(knockbackDir * knockback,ForceMode.Impulse);
                 player.GetComponent<Health> ().ChangeHealth (-attackDamage);
+
+                }
                 attackTimer = 0;
             }
         }

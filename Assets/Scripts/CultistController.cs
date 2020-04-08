@@ -27,7 +27,11 @@ public class CultistController : MonoBehaviour {
     // for the various destinations throughout the A.I states
     [SerializeField, HideInInspector] Vector3 destination;
 
-#region Patrol Variables
+    [SerializeField] Animator animator;
+        Vector3 prevPos;
+    Vector3 move = Vector3.zero;
+
+    #region Patrol Variables
     [SerializeField] float patrolSpeed = 2f;
     [HideInInspector] public GameObject Waypoint;
     [HideInInspector] public List<Transform> waypoints;
@@ -36,17 +40,17 @@ public class CultistController : MonoBehaviour {
     int currentWaypoint = 0;
     // Distance from the destination to go to the next waypoint
     float distThreshold = 0.1f;
-#endregion 
+    #endregion 
 
-#region Chase Variables
+    #region Chase Variables
     [HideInInspector] public bool playerSighted;
     [SerializeField] float sightDistance = 6f;
     [SerializeField] float chaseSpeed = 3;
     [SerializeField, HideInInspector] SphereCollider sphereOfSight;
     [SerializeField] LayerMask rayMask;
-#endregion
+    #endregion
 
-#region Attack Variables
+    #region Attack Variables
     [SerializeField] float attackDistance;
     float attackerDistance;
     [SerializeField] float attackRate;
@@ -54,22 +58,22 @@ public class CultistController : MonoBehaviour {
     [SerializeField] int attackDamage = 30;
     Vector3 knockbackDir;
     [SerializeField] float knockback = 8f;
-#endregion
+    #endregion
 
-#region Stunned Variables
-    [HideInInspector] public bool stunned;
-    [SerializeField] private int stunnedDuration = 2;
+    #region Stunned Variables
+   // [HideInInspector]
+    public bool stunned;
+    [SerializeField] private float stunnedDuration = 1.5f;
     private float stunTimer;
 
-#endregion
+    #endregion
 
-#region  Alterted Variables
+    #region  Alterted Variables
     [SerializeField] float alertedSpeed = 2;
     [HideInInspector] public bool alerted;
     [HideInInspector] public Vector3 alertPosistion;
 
-#endregion
-
+    #endregion
 
     void Start () {
         //Find Components
@@ -78,6 +82,7 @@ public class CultistController : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag ("Player");
         playerStates = player.GetComponent<PlayerStates> ();
         agent = GetComponent<NavMeshAgent> ();
+        animator = GetComponentInChildren<Animator>();
         // Intiaitate state
         currentState = State.idle;
         // Convert the Local positions of the waypoints to to world posistions
@@ -89,7 +94,7 @@ public class CultistController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-    #region  Controls the different states 
+        #region  Controls the different states 
         if (!playerSighted) {
             currentState = State.patrol;
         } else {
@@ -111,6 +116,8 @@ public class CultistController : MonoBehaviour {
             attackTimer = 0;
         }
 
+
+
         //Methods base on current state
         switch (currentState) {
             case State.patrol:
@@ -131,6 +138,16 @@ public class CultistController : MonoBehaviour {
             default:
                 break;
         }
+        animator.SetBool("Stunned", stunned);
+        if (!stunned)
+        {
+
+        move = transform.position - prevPos;
+        animator.SetFloat ("FloatX", move.x);
+        animator.SetFloat ("FloatZ", move.z);
+        prevPos = transform.position;
+        }
+
     }
     #endregion
     //// used to determin if the player is in sight range then if they are hidden or the latern is lit
@@ -142,7 +159,7 @@ public class CultistController : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast (transform.position, dir, out hit, rayMask)) {
                 if (hit.collider.CompareTag ("Player")) {
-                    if (!playerStates.isHidden && playerStates.isLit) {
+                    if (!playerStates.isHidden && playerStates.isLit || Vector3.Distance (hit.transform.position, transform.position) <= 2f) {
                         playerSighted = true;
                     } else {
                         playerSighted = false;
@@ -185,8 +202,27 @@ public class CultistController : MonoBehaviour {
         if (attackTimer > attackRate) {
             if (!stunned && playerSighted) {
                 Debug.Log ("ATTACK");
-                player.GetComponent<Rigidbody>().AddForce(knockbackDir.normalized * knockback,ForceMode.Impulse);
-                player.GetComponent<Health> ().ChangeHealth (-attackDamage);
+                Vector3 attackDir = transform.position - player.transform.position;
+                Debug.Log(attackDir);
+                if (attackDir.z < -0.1)
+                    animator.SetTrigger("AttackNorth");
+
+                if (attackDir.z > 0.1)
+                    animator.SetTrigger("AttackSouth");
+
+                if (attackDir.x < -0.1)
+                    animator.SetTrigger("AttackEast");
+
+                if (attackDir.x > 0.1)
+                    animator.SetTrigger("AttackWest");
+
+
+                int attackHit = UnityEngine.Random.Range (0, 1);
+                if (attackHit == 0) {
+
+                    player.GetComponent<Rigidbody> ().AddForce (knockbackDir * knockback, ForceMode.Impulse);
+                    player.GetComponent<Health> ().ChangeHealth (-attackDamage);
+                }
                 attackTimer = 0;
             }
         }
@@ -195,6 +231,9 @@ public class CultistController : MonoBehaviour {
     void Stun () {
         playerSighted = false;
         agent.speed = 0;
+        agent.SetDestination(transform.position);
+        move = Vector3.zero;
+        
         stunTimer += Time.deltaTime;
         if (stunTimer > stunnedDuration) {
             stunned = false;
@@ -207,12 +246,12 @@ public class CultistController : MonoBehaviour {
         destination = alertPosistion;
         agent.speed = alertedSpeed;
         agent.SetDestination (destination);
-        if (Vector3.Distance(transform.position, alertPosistion)< 1f) {
-            StartCoroutine(waitAfterAlerted());
+        if (Vector3.Distance (transform.position, alertPosistion) < 1f) {
+            StartCoroutine (waitAfterAlerted ());
         }
     }
-    IEnumerator waitAfterAlerted(){
-        yield return new WaitForSeconds(Random.Range(1,3));
+    IEnumerator waitAfterAlerted () {
+        yield return new WaitForSeconds (Random.Range (1, 3));
         alerted = false;
     }
     ////// Inspector stuff////////////////

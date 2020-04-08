@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1556374245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556374246}
+  m_Layer: 0
+  m_Name: Waypoint(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556374246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556374245}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.75, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5609188693504152545}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3520018951753886441
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +60,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5609188693504152545}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!212 &9069662334364853037
 SpriteRenderer:
@@ -70,7 +100,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f002abcf054713f44b529e4f29162496, type: 3}
+  m_Sprite: {fileID: -2682451067140870747, guid: 8c26c60af9bdfa7418fb998ce6316506,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,6 +165,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 609757926}
+  - {fileID: 1556374246}
   - {fileID: 3302075289475095504}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -232,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   destination: {x: 0, y: 0, z: 0}
+  animator: {fileID: 0}
   patrolSpeed: 1
   Waypoint: {fileID: 4331141079118923365, guid: 42ea609fe4031a643a2b5126f5e17ce1,
     type: 3}
@@ -246,9 +279,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackDistance: 1
-  attackRate: 0
+  attackRate: 2
   attackDamage: 20
-  knockback: 8
+  knockback: 1
   stunned: 0
   stunnedDuration: 2
   alertedSpeed: 2

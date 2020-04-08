@@ -75,12 +75,15 @@
     <Compile Include="Assets\Scripts\LightMovementTest.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\PickUpPotion.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerStates.cs" />
     <Compile Include="Assets\Scripts\RestoringItem.cs" />
     <Compile Include="Assets\Scripts\Sprint.cs" />
+    <Compile Include="Assets\Scripts\Torch.cs" />
     <Compile Include="Assets\Scripts\UI\GameLoopManager.cs" />
     <Compile Include="Assets\Scripts\UI\Hotbar.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerHealthTest.cs" />
+    <Compile Include="Assets\Scripts\XMLOp.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>F:/school/Gone-in-the-Dark/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
