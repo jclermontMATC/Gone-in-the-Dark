@@ -88,11 +88,10 @@ public class GhostController : MonoBehaviour {
             currentState = State.attack;
         }
 
-        if (playerSighted) {
-            attackTimer += Time.deltaTime;
-        } else {
-            attackTimer = 0;
-        }
+        attackTimer += Time.deltaTime;
+        //} else {
+        //    attackTimer = 0;
+        //}
 
         //Methods base on current state
         switch (currentState) {
@@ -128,7 +127,7 @@ public class GhostController : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast (transform.position, dir, out hit, rayMask)) {
                 if (hit.collider.CompareTag ("Player")) {
-                    if (!playerStates.isHidden) { // && !playerStates.isLit
+                    if (!playerStates.isHidden) { //&& !playerStates.isLit
                         playerSighted = true;
                     } else {
                         playerSighted = false;
@@ -155,7 +154,7 @@ public class GhostController : MonoBehaviour {
         knockbackDir = player.transform.position - transform.position;
         knockbackDir.y = 0.2f;
         if (attackTimer > attackRate) {
-            if (!stunned && playerSighted) {
+            if (!stunned) {
                 Debug.Log ("ATTACK");
                 player.GetComponent<Rigidbody>().AddForce(knockbackDir.normalized * knockback,ForceMode.Impulse);
                 player.GetComponent<Health> ().ChangeHealth (-attackDamage);

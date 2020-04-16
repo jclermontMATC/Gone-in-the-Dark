@@ -372,13 +372,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5821689931080361803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae35d52dc403d8049a66e65a1191c69a, type: 3}
+  m_Script: {fileID: 11500000, guid: 271d6598380004fb0b8f56abc983ce03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxStamina: 100
   currentStamina: 0
   regenStamina: 1
-  speed: 5
+  speed: 3
 --- !u!114 &1860183658
 MonoBehaviour:
   m_ObjectHideFlags: 0

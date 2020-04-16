@@ -105,11 +105,12 @@ public class CultistController : MonoBehaviour {
         if (Vector3.Distance (transform.position, player.transform.position) <= attackDistance) {
             currentState = State.attack;
         }
-        if (playerSighted) {
-            attackTimer += Time.deltaTime;
-        } else {
-            attackTimer = 0;
-        }
+        
+         attackTimer += Time.deltaTime;
+        
+        //else {
+        //    attackTimer = 0;
+        //}
 
         //Methods base on current state
         switch (currentState) {
@@ -183,7 +184,7 @@ public class CultistController : MonoBehaviour {
         knockbackDir = player.transform.position - transform.position;
         knockbackDir.y = 0.2f;
         if (attackTimer > attackRate) {
-            if (!stunned && playerSighted) {
+            if (!stunned) {
                 Debug.Log ("ATTACK");
                 player.GetComponent<Rigidbody>().AddForce(knockbackDir.normalized * knockback,ForceMode.Impulse);
                 player.GetComponent<Health> ().ChangeHealth (-attackDamage);
@@ -191,6 +192,8 @@ public class CultistController : MonoBehaviour {
             }
         }
     }
+
+
     /// stops the cultist when they are stunned. A simple Boolean "Stunned" activates this
     void Stun () {
         playerSighted = false;

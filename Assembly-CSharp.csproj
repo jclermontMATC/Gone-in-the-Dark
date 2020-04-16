@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <CscToolPath>/Applications/Unity/Hub/Editor/2019.2.0f1/Unity.app/Contents/Tools/RoslynScripts</CscToolPath>
-    <CscToolExe>unity_csc.sh</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AlertCultist.cs" />
+     <Compile Include="Assets\Scripts\AttackTrigger.cs" />
      <Compile Include="Assets\Scripts\CultistController.cs" />
      <Compile Include="Assets\Scripts\CultistInspector.cs" />
      <Compile Include="Assets\Scripts\Environment\StepStone.cs" />
@@ -66,14 +65,24 @@
      <Compile Include="Assets\Scripts\Lantern.cs" />
      <Compile Include="Assets\Scripts\LightMovementTest.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
+     <Compile Include="Assets\Scripts\New Folder\IInteract.cs" />
+     <Compile Include="Assets\Scripts\New Folder\PlayerInteract.cs" />
+     <Compile Include="Assets\Scripts\New Folder\Statue.cs" />
+     <Compile Include="Assets\Scripts\New Folder\StatueController.cs" />
      <Compile Include="Assets\Scripts\PickUpPotion.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerStates.cs" />
+     <Compile Include="Assets\Scripts\Puzzle\PipePuzzle.cs" />
+     <Compile Include="Assets\Scripts\Puzzle\PipePuzzlePiece.cs" />
      <Compile Include="Assets\Scripts\RestoringItem.cs" />
      <Compile Include="Assets\Scripts\Sprint.cs" />
+     <Compile Include="Assets\Scripts\Torch.cs" />
      <Compile Include="Assets\Scripts\UI\GameLoopManager.cs" />
      <Compile Include="Assets\Scripts\UI\Hotbar.cs" />
      <Compile Include="Assets\Scripts\UI\PlayerHealthTest.cs" />
+     <Compile Include="Assets\Scripts\XMLOp.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/jonasclermont/Desktop/Gone-in-the-Dark/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
@@ -289,6 +298,9 @@
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Hub/Editor/2019.2.0f1/PlaybackEngines/AppleTVSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>/Applications/Unity/Hub/Editor/2019.2.0f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Common">
  <HintPath>/Applications/Unity/Hub/Editor/2019.2.0f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
