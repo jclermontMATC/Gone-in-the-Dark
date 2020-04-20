@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Base path: 'C:/Program Files/Unity/Editor/Data', plugins path 'C:/Program Files/Unity/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 Cmd: preprocessCompute
@@ -9,3 +10,7 @@ Cmd: preprocess
 Base path: 'C:/Program Files/Unity/Editor/Data', plugins path 'C:/Program Files/Unity/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 >>>>>>> Mike
+=======
+Base path: 'F:/2019.2.0f1/Editor/Data', plugins path 'F:/2019.2.0f1/Editor/Data/PlaybackEngines'
+Cmd: initializeCompiler
+>>>>>>> Brian
